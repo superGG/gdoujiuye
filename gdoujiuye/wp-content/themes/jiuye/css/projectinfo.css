@@ -1,0 +1,188 @@
+.container .content {
+	width: 960px;
+	margin: 0px auto;
+	height: auto;
+	overflow: hidden;
+}
+
+.l1 {
+	width: 690px;
+	float: left;
+	margin-top: 20px;
+}
+
+.l1 .c12, .l1 .c201, .l1 .c54, .l1 .c300 {
+	opacity:0.8;
+background: #FFF;
+border-radius: 5px;
+margin-bottom: 16px;
+}
+
+.t43 {
+width: 630px;
+overflow: hidden;
+margin: 0px auto;
+padding-top: 40px;
+}
+
+.t40 {
+text-align: center;
+font-size: 25px;
+color: #000;
+margin-bottom: 30px;
+}
+
+.c42 {
+margin-top: 19px;
+overflow: hidden;
+}
+
+.c42 a {
+display: block;
+padding: 0px 12px;
+height: 25px;
+line-height: 25px;
+border: solid 1px #EBEBEB;
+font-size: 13px;
+color: #D2D2D2;
+float: left;
+margin-right: 8px;
+border-radius: 5px;
+}
+
+.c44 {
+font-size: 14px;
+color: #9B9B9B;
+line-height: 20px;
+margin: 10px 0 27px 0;
+}
+
+.c31 {
+/*width: 968px;
+margin-top: 26px;*/
+}
+
+.c20 .c22 {
+float: right;
+position: relative;
+height: 30px;
+margin-top: 10px;
+display: inline;
+overflow: hidden;
+}
+
+.c20 {
+height: 51px;
+background: #F6F6F6;
+width: 690px;
+}
+
+.c20 ul, .c20 ul li {
+float: left;
+overflow: hidden;
+}
+
+.c20 ul li.c21 {
+background: #C9C9C9;
+}
+
+.c20 ul li a {
+display: block;
+height: 51px;
+line-height: 51px;
+padding: 0 36px;
+display: block;
+font-size: 14px;
+color: #000;
+}
+
+.l2 {
+width: 254px;
+float: right;
+margin-top: 20px;
+}
+
+.support {
+background: #FFF;
+border-radius: 5px;
+margin-bottom: 15px;
+overflow: hidden;
+}
+
+.support .c5>strong {
+font-size: 26px;
+color: #2B2B2B;
+display: block;
+margin-bottom: 2px;
+}
+
+.support .c5>span {
+color: #2B2B2B;
+font-size: 14px;
+}
+
+.support .c1 {
+height: 8px;
+background: #D9D9DE;
+border-radius: 10px;
+overflow: hidden;
+margin: 18px 0 5px 0;
+}
+
+.support .c2 {
+margin-bottom: 10px;
+overflow: hidden;
+}
+
+.support .c3 {
+height: 35px;
+background: url(http://assets.demohour.com/assets/196-a469ef753b8dbccfdb2a38a4a14e7fbeb8d91da7cbbf156e89543c4b7319aaa1.png) no-repeat left center;
+padding-left: 30px;
+color: #6A6A6A;
+font-size: 14px;
+padding-top: 5px;
+line-height: 15px;
+}
+
+.support .c5 {
+padding: 15px;
+}
+
+.support .c1 p {
+height: 8px;
+background: #2BDE73;
+}
+
+.l1 .c12 .c311 {
+overflow: hidden;
+margin-top: 30px;
+}
+
+.l1 .c12 .c31 p {
+font-size: 15px;
+line-height: 24px;
+padding: 0 20px;
+color: #333;
+}
+
+.l1 .c12 .c31 img, .l1 .c12 .c31 embed {
+width: 690px;
+display: block;
+margin: 0px auto;
+}
+
+.l1 .c12 .c311 img{
+margin-left: -20px;
+}
+
+.t31 {
+width: 630px;
+overflow: hidden;
+margin: 0px auto;
+padding-top: 20px;
+padding-bottom: 40px;
+}
+
+.c311{
+	line-height: 2;
+}

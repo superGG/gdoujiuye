@@ -1,0 +1,42 @@
+.container{
+	padding-top: 48px;
+	width: 960px;
+	margin: 0 auto;
+}
+
+.container .c1{
+	background: #F8F8F8;
+	border-radius: 5px;
+	color: #666;
+	font-size: 13px;
+	width: 958px;
+	margin-right: 10px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.container .c1 dl{
+	height: 36px;
+	border-bottom: solid 1px #E5E5E5;
+	line-height: 36px;
+	color: #666;
+}
+
+.container .c1 dl dt{
+	float: left;
+	margin: 0 10px;
+}
+
+.container .c1 dd a{
+	color: #666;
+	margin-left: 10px;
+
+}
+
+.container .c1 .c3{
+	background: #D2DC00;
+	color: #fff;
+	border-radius: 3px;
+	margin-right: 12px;
+	padding: 5px 8px;
+}

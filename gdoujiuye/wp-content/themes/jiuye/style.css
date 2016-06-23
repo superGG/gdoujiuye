@@ -1,0 +1,30 @@
+/*
+Theme Name: 广海招就
+Theme URI: http://www.wordpresshy.com/
+Author: 伯爵科技团队
+Author URI: http://www.wordpresshy.com/
+Description: 广东海洋大学就业楼创业孵化基地官网
+Version: 1.0
+*/
+p.ludou-error {
+  text-align: center;
+  margin: 16px 0;
+  padding: 67px;
+  background-color: #ffebe8;
+  border: 1px solid #c00;
+  font-size: 50px;
+  line-height: 1.4em;
+}
+.ludou-reg label {
+  color: #777;
+  font-size: 14px;
+  cursor: pointer;
+}
+.ludou-reg .input {
+  margin: 0;
+  color: #555;
+  font-size: 24px;
+  padding: 3px;
+  border: 1px solid #e5e5e5;
+  background: #fbfbfb;
+}

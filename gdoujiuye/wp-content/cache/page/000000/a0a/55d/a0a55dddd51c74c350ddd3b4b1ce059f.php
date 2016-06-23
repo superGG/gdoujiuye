@@ -1,0 +1,1 @@
+™#W<?php exit; ?>a:4:{i:404;b:0;s:7:"headers";a:2:{s:12:"Content-Type";s:25:" text/html; charset=UTF-8";s:10:"X-Pingback";s:45:" http://zsjy.gdou.edu.cn/gdoujiuye/xmlrpc.php";}s:4:"time";i:1461912713;s:7:"content";s:4:"page";}

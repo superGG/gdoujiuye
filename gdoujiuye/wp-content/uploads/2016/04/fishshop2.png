@@ -1,0 +1,749 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : localhost_3306
+Source Server Version : 50621
+Source Host           : localhost:3306
+Source Database       : fishshop
+
+Target Server Type    : MYSQL
+Target Server Version : 50621
+File Encoding         : 65001
+
+Date: 2016-02-29 20:38:45
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `category`
+-- ----------------------------
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE `category` (
+  `categoryId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `categorySimpleName` varchar(255) NOT NULL,
+  `categoryAcademicName` varchar(255) NOT NULL,
+  `getType` int(11) DEFAULT NULL,
+  `categoryEnglishName` varchar(255) DEFAULT NULL,
+  `parentId` bigint(20) DEFAULT NULL,
+  `fishPhoto` varchar(255) NOT NULL,
+  `unit` varchar(255) NOT NULL,
+  `totalSellNumber` bigint(20) DEFAULT NULL,
+  `skuList` varchar(255) NOT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  `hotDegree` bigint(20) DEFAULT '0',
+  PRIMARY KEY (`categoryId`),
+  KEY `FK_t5q79q343h5dagly7r5avs1wj` (`parentId`),
+  CONSTRAINT `FK_t5q79q343h5dagly7r5avs1wj` FOREIGN KEY (`parentId`) REFERENCES `category` (`categoryId`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of category
+-- ----------------------------
+INSERT INTO `category` VALUES ('1', '鱼类', '鱼类', '3', 'fishcategory', null, 'category/fish.jpg', '斤', '0', '[1,2,3]', '2015-10-04 13:41:32', '1', '', '1', '0');
+INSERT INTO `category` VALUES ('2', '虾类', '虾类', '3', 'shrimpscategory', null, 'category/xia.jpg', '斤', '0', '[1,2,3]', '2015-10-04 13:41:32', '1', '', '1', '0');
+INSERT INTO `category` VALUES ('3', '蟹类', '鱼类', '3', 'fishcategory', null, 'category/pangxie.jpg', '斤', '0', '[1,2,3]', '2015-10-04 13:41:32', '1', '', '1', '0');
+INSERT INTO `category` VALUES ('4', '贝类', '鱼类', '3', 'fishcategory', null, 'category/beike.jpg', '斤', '0', '[1,2,3]', '2015-11-04 13:41:32', '1', '', '1', '0');
+INSERT INTO `category` VALUES ('5', '鱿鱼类', '鱼类', '3', 'fishcategory', null, 'category/xia.jpg', '斤', '0', '[1,2,3]', '2015-11-04 13:41:32', '1', '', '1', '0');
+INSERT INTO `category` VALUES ('6', '人参类', '鱼类', '3', 'fishcategory', null, 'category/haishen.jpg', '斤', '0', '[1,2,3]', '2015-11-04 13:41:32', '1', '', '1', '0');
+INSERT INTO `category` VALUES ('7', '东星白班鱼', '东星白班鱼', '3', 'whitefish', '1', 'category/haishen.jpg', '斤', '376', '[1,3]', '2015-10-04 13:41:32', '1', '', '1', '0');
+INSERT INTO `category` VALUES ('8', '小黄鱼', '小黄鱼', '3', 'yellowfish', '1', 'category/fish.jpg', '个', '74', '[1,2,3]', '2015-10-04 13:41:32', '1', '', '1', '0');
+INSERT INTO `category` VALUES ('9', '小黑鱼', '小黑鱼', '3', 'smallblackfish', '1', 'category/beike.jpg', '条', '18', '[2,3]', '2015-10-04 13:41:32', '1', '', '1', '0');
+INSERT INTO `category` VALUES ('10', '大头虾', '大头虾', '3', 'bigHeadXia', '2', 'category/xia.jpg', '斤', '0', '[2,3]', '2015-11-26 12:58:27', '1', '', '1', '0');
+INSERT INTO `category` VALUES ('18', '大白鲨', '大白鲨', '3', 'shark', '1', 'category/d3b3b9dd-1125-4ef8-a871-e5ae1b65e023.jpg', '斤', null, '[21,22,23]', '2015-12-21 19:29:25', '1', '', '1', '0');
+INSERT INTO `category` VALUES ('20', '罗非鱼', '罗非鱼', '3', 'luofeifish', '1', 'category/c01ce6a0-f654-40b3-b544-4ebe15e61440.jpg', '斤', null, '[27,28,29]', '2015-12-22 20:56:17', '1', '', '1', '0');
+
+-- ----------------------------
+-- Table structure for `checkout`
+-- ----------------------------
+DROP TABLE IF EXISTS `checkout`;
+CREATE TABLE `checkout` (
+  `checkoutId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `userId` bigint(20) DEFAULT NULL,
+  `userType` int(11) DEFAULT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  `identityId` bigint(20) DEFAULT NULL,
+  `state` int(11) DEFAULT NULL,
+  PRIMARY KEY (`checkoutId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of checkout
+-- ----------------------------
+INSERT INTO `checkout` VALUES ('1', '1', '1', '2015-11-05 11:10:37', null, '', '1', null, '1');
+
+-- ----------------------------
+-- Table structure for `comment`
+-- ----------------------------
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment` (
+  `commentId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `shopId` bigint(20) DEFAULT NULL,
+  `userId` bigint(20) DEFAULT NULL,
+  `phoneNumber` varchar(255) DEFAULT NULL,
+  `ordersId` bigint(20) DEFAULT NULL,
+  `commentType` int(11) DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `anonymity` int(11) DEFAULT NULL,
+  `weightQuality` float DEFAULT NULL,
+  `freshQuality` float DEFAULT NULL,
+  `speedQuality` float DEFAULT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  PRIMARY KEY (`commentId`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of comment
+-- ----------------------------
+INSERT INTO `comment` VALUES ('22', '1', '1', '匿名', '11111110', '-1', '不错。我只是来测试而已', '1', '3', '2', '4', '2015-11-27 16:49:31', null, '', '0');
+INSERT INTO `comment` VALUES ('23', '1', '1', '匿名', '11111110', '-1', '不错。我只是来测试而已', '1', '3', '2', '4', '2015-11-27 16:50:26', null, '', '0');
+INSERT INTO `comment` VALUES ('24', '1', '1', '匿名', '11111110', '-1', '不错。我只是来测试而已', '1', '3', '2', '4', '2015-11-27 16:51:42', null, '', '0');
+INSERT INTO `comment` VALUES ('26', '1', '4', '匿名', '11111120', '-1', 'Imissyou有评论', '1', '5', '4.5', '4', '2015-11-27 17:32:55', null, '', '0');
+INSERT INTO `comment` VALUES ('27', '1', '4', '匿名', '11111120', '0', '技术的激发了圣诞节费电话费的说法', '1', '3.5', '3.5', '3.5', '2015-11-27 22:38:14', null, '', '0');
+INSERT INTO `comment` VALUES ('28', '1', '4', '匿名', '11111120', '1', '不好！不哈话', '1', '4', '3.5', '3.5', '2015-11-28 11:18:42', null, '', '0');
+INSERT INTO `comment` VALUES ('29', '1', '4', '匿名', '11111120', '1', '胡大垃圾发电水立方角度来看\n不hi啊好不', '1', '1', '1', '1', '2015-11-28 11:21:00', null, '', '0');
+INSERT INTO `comment` VALUES ('30', '1', '4', '匿名', '11111120', '1', '456419135156/urrrrrr', '1', '1.5', '1.5', '1', '2015-11-28 11:21:32', null, '', '0');
+INSERT INTO `comment` VALUES ('41', '1', '4', '18312687412', '11111131', '0', '…', '0', '5', '5', '4.5', '2015-12-07 21:42:30', null, '', '0');
+INSERT INTO `comment` VALUES ('42', '1', '4', '18312687412', '11111132', '1', '的', '0', '5', '5', '5', '2015-12-07 21:44:38', null, '', '0');
+INSERT INTO `comment` VALUES ('43', '1', '4', '匿名', '11111135', '0', '啦啦啦', '1', '3.5', '4', '4.5', '2015-12-07 22:29:48', null, '', '0');
+INSERT INTO `comment` VALUES ('44', '6', '13', '匿名', '11122260', '1', '吾问无为谓', '1', '5', '5', '5', '2016-01-08 18:17:19', null, '', '0');
+
+-- ----------------------------
+-- Table structure for `farmers`
+-- ----------------------------
+DROP TABLE IF EXISTS `farmers`;
+CREATE TABLE `farmers` (
+  `farmersId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `shopId` bigint(20) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `longitude` double DEFAULT NULL,
+  `latitude` double DEFAULT NULL,
+  `forntIdentityPhoto` varchar(255) DEFAULT NULL,
+  `backIdentityPhoto` varchar(255) DEFAULT NULL,
+  `addressPhoto` varchar(255) NOT NULL,
+  `aquacultureLicense` varchar(255) NOT NULL,
+  `multiGetType` varchar(255) DEFAULT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  `addresscode` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`farmersId`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of farmers
+-- ----------------------------
+INSERT INTO `farmers` VALUES ('1', '5', '广东海洋大学', '234.4', '344.6', 'farmer/7bce5218-9396-432f-848b-254cf2d8cf6c.jpg', 'farmer/cabbd9f1-c9e2-4051-b3ec-aa0e41f7359c.jpg', '[\"farmer/96e2cc6f-14eb-4a3c-91c9-630b2a10d04a.jpg\",\"farmer/96e2cc6f-14eb-4a3c-91c9-630b2a10d04a.jpg\",\"farmer/b36af58c-f870-4e5a-bd31-0c9153b741ba.jpg\",\"farmer/9af4c402-1a5e-466b-96c3-97f98c70a6cd.jpg\",\"farmer/4f09dd7d-9c59-4e3f-9f32-1ed8ab16d6dc.png\"]', 'farmer/47789119-a491-4756-abf9-49e8f871c862.jpg', '[8,9,10,12]', '2015-11-17 11:17:58', null, '', '2', '1');
+INSERT INTO `farmers` VALUES ('2', '6', '岭南师范学院', '234.4', '344.6', 'farmer/7bce5218-9396-432f-848b-254cf2d8cf6c.jpg', 'farmer/cabbd9f1-c9e2-4051-b3ec-aa0e41f7359c.jpg', '[\"farmer/96e2cc6f-14eb-4a3c-91c9-630b2a10d04a.jpg\",\"farmer/96e2cc6f-14eb-4a3c-91c9-630b2a10d04a.jpg\",\"farmer/b36af58c-f870-4e5a-bd31-0c9153b741ba.jpg\",\"farmer/9af4c402-1a5e-466b-96c3-97f98c70a6cd.jpg\",\"farmer/4f09dd7d-9c59-4e3f-9f32-1ed8ab16d6dc.png\"]', 'farmer/47789119-a491-4756-abf9-49e8f871c862.jpg', '[11,12,13]', '2015-11-17 11:17:58', null, '', '1', '1');
+INSERT INTO `farmers` VALUES ('3', '7', '北京大学', '234.4', '344.6', 'farmer/7bce5218-9396-432f-848b-254cf2d8cf6c.jpg', 'farmer/cabbd9f1-c9e2-4051-b3ec-aa0e41f7359c.jpg', '[\"farmer/96e2cc6f-14eb-4a3c-91c9-630b2a10d04a.jpg\",\"farmer/96e2cc6f-14eb-4a3c-91c9-630b2a10d04a.jpg\",\"farmer/b36af58c-f870-4e5a-bd31-0c9153b741ba.jpg\",\"farmer/9af4c402-1a5e-466b-96c3-97f98c70a6cd.jpg\",\"farmer/4f09dd7d-9c59-4e3f-9f32-1ed8ab16d6dc.png\"]', 'farmer/47789119-a491-4756-abf9-49e8f871c862.jpg', '[14,12,13]', '2015-11-17 11:17:58', null, '', '1', '1');
+INSERT INTO `farmers` VALUES ('4', '8', '清华大学', '234.4', '344.6', 'farmer/7bce5218-9396-432f-848b-254cf2d8cf6c.jpg', 'farmer/cabbd9f1-c9e2-4051-b3ec-aa0e41f7359c.jpg', '[\"farmer/96e2cc6f-14eb-4a3c-91c9-630b2a10d04a.jpg\",\"farmer/96e2cc6f-14eb-4a3c-91c9-630b2a10d04a.jpg\",\"farmer/b36af58c-f870-4e5a-bd31-0c9153b741ba.jpg\",\"farmer/9af4c402-1a5e-466b-96c3-97f98c70a6cd.jpg\",\"farmer/4f09dd7d-9c59-4e3f-9f32-1ed8ab16d6dc.png\"]', 'farmer/47789119-a491-4756-abf9-49e8f871c862.jpg', '[14,15,8]', '2015-11-17 11:17:58', null, '', '1', '1');
+INSERT INTO `farmers` VALUES ('6', null, null, null, null, 'farmer/7bce5218-9396-432f-848b-254cf2d8cf6c.jpg', 'farmer/cabbd9f1-c9e2-4051-b3ec-aa0e41f7359c.jpg', '[\"farmer/96e2cc6f-14eb-4a3c-91c9-630b2a10d04a.jpg\",\"farmer/96e2cc6f-14eb-4a3c-91c9-630b2a10d04a.jpg\",\"farmer/b36af58c-f870-4e5a-bd31-0c9153b741ba.jpg\",\"farmer/9af4c402-1a5e-466b-96c3-97f98c70a6cd.jpg\",\"farmer/4f09dd7d-9c59-4e3f-9f32-1ed8ab16d6dc.png\"]', 'farmer/47789119-a491-4756-abf9-49e8f871c862.jpg', null, '2016-01-06 21:55:11', null, '', '0', null);
+INSERT INTO `farmers` VALUES ('7', null, null, null, null, 'farmer/cea0c375-5752-4b54-a35d-999e029fa440.jpg', 'farmer/efb2c7c0-6908-4440-a8c7-83faca950a2f.jpg', '[\"farmer/e84c3709-66b0-419f-8a43-cf264e4977c7.jpg\",\"farmer/e84c3709-66b0-419f-8a43-cf264e4977c7.jpg\",\"farmer/75220c16-29f1-4682-8bbc-3349344096e8.jpg\",\"farmer/bf419ba0-b5ec-444c-bacf-cc884cabb82c.jpg\",\"farmer/7cc52cc9-a976-4735-8b9d-2994dec6c6a4.png\"]', 'farmer/f23b2b12-7615-4cae-b093-52b059dc5327.jpg', null, '2016-01-06 21:55:36', null, '', '0', null);
+INSERT INTO `farmers` VALUES ('8', null, null, null, null, 'farmer/dd8164b0-eef9-43dc-a4ae-0a1ceddce9e4.jpg', 'farmer/091adc76-65ef-489f-9676-d7e80b5e7024.jpg', '[\"farmer/d407fe0e-8dd0-4180-a39f-cf2dfd44089c.jpg\",\"farmer/d407fe0e-8dd0-4180-a39f-cf2dfd44089c.jpg\",\"farmer/ac9b684c-b0bb-4b11-a10e-fa88e8d15e81.jpg\",\"farmer/74e3d9a7-bd84-4a13-9993-2a3ce2e89c08.jpg\",\"farmer/99aff8f8-7ca7-4645-a3f6-16a4b35f2808.png\"]', 'farmer/145a5fea-aae2-4427-975d-438a1192643b.jpg', null, '2016-01-06 21:55:45', null, '', '0', null);
+INSERT INTO `farmers` VALUES ('9', null, null, null, null, 'farmer/d0c458bf-4081-47af-a075-ce373d773dc1.jpg', 'farmer/7b712a4b-1d9e-4ae6-b03a-e8b2374169dd.jpg', '[\"farmer/81f7d9e1-0554-4df2-903e-e9fde910e9cb.jpg\",\"farmer/81f7d9e1-0554-4df2-903e-e9fde910e9cb.jpg\",\"farmer/73353e30-4a10-42ff-8e7c-6f16e17c4b41.jpg\",\"farmer/3f2337f3-830f-4465-bf15-d2e551cd6ed6.jpg\",\"farmer/4110f916-f842-4bce-acf1-c0ca275ba2fe.png\"]', 'farmer/04d12af7-7385-4b6e-b0b0-a5705f23ba7c.jpg', null, '2016-01-06 21:55:57', null, '', '0', null);
+
+-- ----------------------------
+-- Table structure for `fishman`
+-- ----------------------------
+DROP TABLE IF EXISTS `fishman`;
+CREATE TABLE `fishman` (
+  `fishmanId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `shopId` bigint(20) DEFAULT NULL,
+  `getType` int(11) DEFAULT NULL,
+  `frontIdentityPhoto` varchar(255) NOT NULL,
+  `backIdentityPhoto` varchar(255) NOT NULL,
+  `seaPassPhoto` varchar(255) NOT NULL,
+  `shipPhoto` varchar(255) NOT NULL,
+  `enginePower` bigint(20) DEFAULT NULL,
+  `homePort` bigint(20) DEFAULT NULL,
+  `shipCreateTime` varchar(255) DEFAULT NULL,
+  `realName` varchar(255) DEFAULT NULL,
+  `tonnage` bigint(20) DEFAULT NULL,
+  `fishingLicense` varchar(255) DEFAULT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  PRIMARY KEY (`fishmanId`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of fishman
+-- ----------------------------
+INSERT INTO `fishman` VALUES ('1', '1', '16', 'fishman/5163a212-3f2e-4ffb-b53c-f88269d08794.jpg', 'fishman/226c9bc9-5f83-4971-8950-afb630df3340.jpg', 'fishman/abe78b10-c361-4cf9-8348-c117aa2ee5b5.jpg', '[\"fishman/fbdf7092-36fa-4a01-8649-5a4cab907e61.PNG\"]', '20', '1', '2015-11-17', 'superGG', '123456789', 'sdsdfsdf', '2015-11-17 00:00:00', null, '', '19');
+INSERT INTO `fishman` VALUES ('2', '2', '17', 'fishman/5163a212-3f2e-4ffb-b53c-f88269d08794.jpg', 'fishman/226c9bc9-5f83-4971-8950-afb630df3340.jpg', 'fishman/abe78b10-c361-4cf9-8348-c117aa2ee5b5.jpg', '[\"fishman/fa3a48a0-7cac-49b8-954b-0882ef2409c6.jpg\",\"fishman/10b828ac-ad12-459d-843c-85a6caab0142.jpg\",\"fishman/09017529-ba76-4537-aba7-d8452c935009.jpg\",\"fishman/531809c8-5285-4b21-b3a5-50e868058d50.png\"]', '20', '2', '2015-11-17', 'superGG', '123456789', 'sdsdfsdf', '2015-11-17 00:00:00', null, '', '0');
+INSERT INTO `fishman` VALUES ('3', '3', '18', 'fishman/5163a212-3f2e-4ffb-b53c-f88269d08794.jpg', 'fishman/226c9bc9-5f83-4971-8950-afb630df3340.jpg', 'fishman/abe78b10-c361-4cf9-8348-c117aa2ee5b5.jpg', '[\"fishman/fa3a48a0-7cac-49b8-954b-0882ef2409c6.jpg\",\"fishman/10b828ac-ad12-459d-843c-85a6caab0142.jpg\",\"fishman/09017529-ba76-4537-aba7-d8452c935009.jpg\",\"fishman/531809c8-5285-4b21-b3a5-50e868058d50.png\"]', '20', '3', '2015-11-17', 'superGG', '123456789', 'sdsdfsdf', '2015-11-17 00:00:00', null, '', '0');
+INSERT INTO `fishman` VALUES ('4', '4', '19', 'fishman/5163a212-3f2e-4ffb-b53c-f88269d08794.jpg', 'fishman/226c9bc9-5f83-4971-8950-afb630df3340.jpg', 'fishman/abe78b10-c361-4cf9-8348-c117aa2ee5b5.jpg', '[\"fishman/fa3a48a0-7cac-49b8-954b-0882ef2409c6.jpg\",\"fishman/10b828ac-ad12-459d-843c-85a6caab0142.jpg\",\"fishman/09017529-ba76-4537-aba7-d8452c935009.jpg\",\"fishman/531809c8-5285-4b21-b3a5-50e868058d50.png\"]', '20', '1', '2015-11-17', 'superGG', '123456789', 'sdsdfsdf', '2015-11-17 00:00:00', null, '', '0');
+INSERT INTO `fishman` VALUES ('6', '11', '5', 'fishman/5163a212-3f2e-4ffb-b53c-f88269d08794.jpg', 'fishman/226c9bc9-5f83-4971-8950-afb630df3340.jpg', 'fishman/abe78b10-c361-4cf9-8348-c117aa2ee5b5.jpg', '[\"fishman/fa3a48a0-7cac-49b8-954b-0882ef2409c6.jpg\",\"fishman/10b828ac-ad12-459d-843c-85a6caab0142.jpg\",\"fishman/09017529-ba76-4537-aba7-d8452c935009.jpg\",\"fishman/531809c8-5285-4b21-b3a5-50e868058d50.png\"]', '30', '1', '1111', '1111', '1111', null, '2016-01-06 21:22:13', null, '', '2');
+INSERT INTO `fishman` VALUES ('7', null, null, 'fishman/d6e7cbfa-cea0-438c-9590-6a7cbb833476.jpg', 'fishman/ae265c85-789c-47c6-aaba-70bf14f600b0.jpg', 'fishman/571a3e20-f078-4e38-b740-404909baee9e.jpg', '[\"fishman/8df9bc04-8434-45ae-92b1-9eb4399548ff.jpg\",\"fishman/5c99eec3-d9f0-43c2-abd2-2057208a22d4.jpg\",\"fishman/3cd50bc5-0eb1-4fbe-9e06-00dc061f69f9.jpg\",\"fishman/5d46fc4b-5252-41b5-a96f-b30fea0d2884.png\"]', 40, '1', null, null, null, null, '2016-01-06 21:22:24', null, '', '0');
+INSERT INTO `fishman` VALUES ('8', '9', '5', 'fishman/229606a3-50f0-4f13-a381-5f8bdbfac1b7.jpg', 'fishman/f08301b6-3adb-4000-a8e6-733fccd987c7.jpg', 'fishman/f14c5854-d4a9-496e-9667-08015232d9f6.jpg', '[\"fishman/d7abfacd-5d73-4e1f-80ad-5e24e063a727.jpg\",\"fishman/656fd0e6-c623-416d-9b81-013ead4547a0.jpg\",\"fishman/cdb4f921-c173-43b4-a34f-cec0c5cc1dd7.jpg\",\"fishman/c91ddc19-87d1-4895-9cde-abaf211e0b0d.png\"]', '50', '1', '2016-01-06', '黄祥谦', '2000', null, '2016-01-06 21:22:32', null, '', '5');
+INSERT INTO `fishman` VALUES ('9', null, null, 'fishman/8012c3b2-851f-4a77-a0c7-8c242da35483.jpg', 'fishman/169c5779-1737-4a50-bedf-7020a5ff7afb.jpg', 'fishman/7ff46d92-35bc-45ec-991a-9d45fa9fc6f8.jpg', '[\"fishman/46fde76b-1364-405c-ae1e-2922d9e9f368.jpg\",\"fishman/91e19694-11be-40a4-a335-8789cdc08a4e.jpg\",\"fishman/a07185d9-d09d-48cc-9029-c275bb168355.jpg\",\"fishman/8319e515-5a0a-4339-b401-8e94cd9ae176.png\"]','60','1', null, null, null, null, '2016-01-06 21:22:39', null, '', '0');
+INSERT INTO `fishman` VALUES ('10', '10', '7', 'fishman/5edcccb5-d43b-40ff-ad3f-84e4ba7152ab.', 'fishman/aed9d7ba-80f7-4357-bf64-758896265ff3.', 'fishman/c87327f2-5da2-4bf2-8111-deb056f8f5f4.', '[\"fishman/9b36cd79-9632-4e90-b533-7be27b873306.\"]', '100', null, null, null, '100', null, '2016-01-22 14:26:26', null, '', '2');
+
+-- ----------------------------
+-- Table structure for `getaddress`
+-- ----------------------------
+DROP TABLE IF EXISTS `getaddress`;
+CREATE TABLE `getaddress` (
+  `getAddressId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `userId` bigint(20) NOT NULL,
+  `userName` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `postcode` varchar(255) DEFAULT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  `addresscode` varchar(255) NOT NULL,
+  PRIMARY KEY (`getAddressId`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of getaddress
+-- ----------------------------
+INSERT INTO `getaddress` VALUES ('22', '1', '黄祥谦', '广东省湛江市广东海洋大学', '18719425973', '524000', '2015-12-05 20:36:17', null, '', '1', '1');
+INSERT INTO `getaddress` VALUES ('23', '28', '第三方第三方', '范德萨发的是电风扇1', '128946541964641', '鼎折覆餗', '2015-12-05 22:43:34', null, '', '1', '1');
+INSERT INTO `getaddress` VALUES ('28', '4', '詹纪勋', '广东海洋大学', '18312687412', '525438', '2015-12-11 22:16:10', null, '', '1', '1');
+INSERT INTO `getaddress` VALUES ('29', '1', '黄色素', '广东海洋大学', '18719425973', '524000', '2015-12-12 20:55:25', null, '', '1', '1');
+INSERT INTO `getaddress` VALUES ('36', '1', '李金凤', '广东海洋大学', '18719425973', '7e81942', '2015-12-14 20:52:09', null, '', '1', '1');
+INSERT INTO `getaddress` VALUES ('37', '32', '宋文光', '广东海洋大学', '18320489492', '516300', '2015-12-15 19:23:16', null, '', '1', '1');
+INSERT INTO `getaddress` VALUES ('38', '33', '吴迪', '海大', '13822542036', '524000', '2015-12-15 21:06:13', null, '', '1', '1');
+INSERT INTO `getaddress` VALUES ('41', '1', '狗肉把', '后面', '194', '2842', '2015-12-16 09:27:36', null, '', '1', '1');
+INSERT INTO `getaddress` VALUES ('42', '13', 'Imissyou', 'gdsldsldjflsd', '13763012723', '528840', '2016-01-09 22:56:13', null, '', '1', '1');
+INSERT INTO `getaddress` VALUES ('43', '13', 'Imissyou', 'ddddddddddddddddddd', '13763012723', '524088', '2016-01-09 22:59:28', null, '', '1', '8');
+INSERT INTO `getaddress` VALUES ('44', '13', 'Imissyou', 'gdsldsldjflsd', '13763012723', '528847', '2016-01-09 22:59:46', null, '', '1', '1');
+INSERT INTO `getaddress` VALUES ('45', '3', '光相片', '广东海洋大学', '18719425973', '524000', '2016-01-17 13:46:32', null, '', '1', '1');
+
+-- ----------------------------
+-- Table structure for `gettype`
+-- ----------------------------
+DROP TABLE IF EXISTS `gettype`;
+CREATE TABLE `gettype` (
+  `getTypeId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `getName` varchar(255) NOT NULL,
+  `parentId` bigint(20) DEFAULT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  PRIMARY KEY (`getTypeId`),
+  KEY `FK_9f7xf2br1n8grrcimp8o6is2k` (`parentId`),
+  CONSTRAINT `FK_9f7xf2br1n8grrcimp8o6is2k` FOREIGN KEY (`parentId`) REFERENCES `gettype` (`getTypeId`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of gettype
+-- ----------------------------
+INSERT INTO `gettype` VALUES ('1', '捕捞方式', null, '2015-11-05 08:13:31', null, '', '1');
+INSERT INTO `gettype` VALUES ('2', '养殖方式', null, '2015-11-05 08:13:43', null, '', '1');
+INSERT INTO `gettype` VALUES ('3', '撒网式', '1', '2015-11-05 08:14:17', null, '', '5');
+INSERT INTO `gettype` VALUES ('4', '水箱式', '2', '2015-11-05 08:14:41', null, '', '1');
+INSERT INTO `gettype` VALUES ('5', '垂钓式', '1', '2016-01-06 20:11:27', null, '', '1');
+INSERT INTO `gettype` VALUES ('6', '垂钓式', '2', '2016-01-06 20:12:00', null, '', '1');
+INSERT INTO `gettype` VALUES ('7', '网拖式', '1', '2016-01-06 20:12:24', null, '', '1');
+INSERT INTO `gettype` VALUES ('8', '网拖式', '2', '2016-01-06 20:16:24', null, '', '1');
+INSERT INTO `gettype` VALUES ('9', '深水网箱', '2', '2016-01-06 20:16:54', null, '', '1');
+INSERT INTO `gettype` VALUES ('10', '鱼排', '2', '2016-01-06 20:17:08', null, '', '1');
+INSERT INTO `gettype` VALUES ('11', '池塘', '2', '2016-01-06 20:17:19', null, '', '1');
+INSERT INTO `gettype` VALUES ('12', '工厂化', '2', '2016-01-06 20:17:26', null, '', '1');
+INSERT INTO `gettype` VALUES ('13', '滩涂', '2', '2016-01-06 20:17:33', null, '', '1');
+INSERT INTO `gettype` VALUES ('14', '吊养', '2', '2016-01-06 20:17:38', null, '', '1');
+INSERT INTO `gettype` VALUES ('15', '桩养', '2', '2016-01-06 20:17:45', null, '', '1');
+INSERT INTO `gettype` VALUES ('16', '罩网', '1', '2016-01-06 20:18:04', null, '', '1');
+INSERT INTO `gettype` VALUES ('17', '刺网', '1', '2016-01-06 20:18:07', null, '', '1');
+INSERT INTO `gettype` VALUES ('18', '围网', '1', '2016-01-06 20:18:31', null, '', '1');
+INSERT INTO `gettype` VALUES ('19', '笼壶', '1', '2016-01-06 20:18:37', null, '', '1');
+INSERT INTO `gettype` VALUES ('20', '潜捕', '1', '2016-01-06 20:18:42', null, '', '1');
+INSERT INTO `gettype` VALUES ('21', '张网', '1', '2016-01-06 20:18:45', null, '', '1');
+
+-- ----------------------------
+-- Table structure for `goods`
+-- ----------------------------
+DROP TABLE IF EXISTS `goods`;
+CREATE TABLE `goods` (
+  `goodsId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `shopId` bigint(20) NOT NULL,
+  `categoryId` bigint(20) NOT NULL,
+  `goodsQuality` int(11) DEFAULT NULL,
+  `hotDegree` bigint(20) DEFAULT NULL,
+  `getType` int(11) NOT NULL,
+  `sku` int(11) DEFAULT NULL,
+  `price` double NOT NULL,
+  `nowNumber` bigint(20) DEFAULT '0',
+  `unit` varchar(255) NOT NULL,
+  `goodsName` varchar(255) NOT NULL,
+  `goodsPhoto` varchar(255) DEFAULT NULL,
+  `sellNumber` bigint(20) DEFAULT '0',
+  `creatorId` bigint(20) DEFAULT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `isDelete` bit(1) DEFAULT NULL,
+  `version` bigint(20) DEFAULT '1',
+  PRIMARY KEY (`goodsId`)
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of goods
+-- ----------------------------
+INSERT INTO `goods` VALUES ('4', '5', '8', '5', null, '1', '1', '336.5', '55', '只', '美人鱼2', 'goods/aaa.jpg', '47', null, '2015-11-17 09:41:23', '', '1');
+INSERT INTO `goods` VALUES ('5', '6', '8', '5', null, '1', '1', '40', '978', '只', '美人鱼3', 'goods/aaa.jpg', '68', null, '2015-11-17 09:41:23', '', '1');
+INSERT INTO `goods` VALUES ('6', '7', '8', '5', null, '1', '1', '40', '994', '只', '美人鱼4', 'goods/aaa.jpg', '52', null, '2015-11-17 09:41:23', '', '1');
+INSERT INTO `goods` VALUES ('45', '2', '7', '0', null, '3', '1', '1', '11', '斤', '东星白班鱼', 'category/haishen.jpg', '1', null, '2016-01-18 21:03:02', null, '0');
+INSERT INTO `goods` VALUES ('46', '2', '7', '0', null, '3', '3', '2', '24', '斤', '东星白班鱼', 'category/haishen.jpg', '1', null, '2016-01-18 21:03:02', null, '0');
+INSERT INTO `goods` VALUES ('58', '8', '7', '0', null, '3', '1', '12', '0', '斤', '东星白班鱼', 'category/haishen.jpg', '0', null, '2016-01-18 21:55:20', null, '0');
+INSERT INTO `goods` VALUES ('59', '8', '7', '0', null, '3', '3', '24', '0', '斤', '东星白班鱼', 'category/haishen.jpg', '0', null, '2016-01-18 21:55:20', null, '0');
+INSERT INTO `goods` VALUES ('60', '2', '8', '0', null, '3', '1', '22', '11', '个', '小黄鱼', 'category/fish.jpg', '1', null, '2016-01-18 22:18:59', null, '0');
+INSERT INTO `goods` VALUES ('61', '2', '8', '0', null, '3', '2', '25', '23', '个', '小黄鱼', 'category/fish.jpg', '1', null, '2016-01-18 22:18:59', null, '0');
+INSERT INTO `goods` VALUES ('62', '2', '8', '0', null, '3', '3', '25', '35', '个', '小黄鱼', 'category/fish.jpg', '1', null, '2016-01-18 22:18:59', null, '0');
+INSERT INTO `goods` VALUES ('63', '2', '9', '0', null, '3', '2', '25', '0', '条', '小黑鱼', 'category/beike.jpg', '0', null, '2016-01-19 18:54:37', null, '0');
+INSERT INTO `goods` VALUES ('64', '2', '9', '0', null, '3', '3', '50', '0', '条', '小黑鱼', 'category/beike.jpg', '0', null, '2016-01-19 18:54:37', null, '0');
+INSERT INTO `goods` VALUES ('65', '2', '10', '0', null, '3', '2', '25', '0', '斤', '大头虾', 'category/xia.jpg', '0', null, '2016-01-19 18:54:54', null, '0');
+INSERT INTO `goods` VALUES ('66', '2', '10', '0', null, '3', '3', '50', '0', '斤', '大头虾', 'category/xia.jpg', '0', null, '2016-01-19 18:54:54', null, '0');
+INSERT INTO `goods` VALUES ('70', '1', '7', '0', null, '3', '1', '25', '0', '斤', '东星白班鱼', 'category/haishen.jpg', '0', null, '2016-01-22 23:02:04', null, '0');
+INSERT INTO `goods` VALUES ('71', '1', '7', '0', null, '3', '3', '15', '0', '斤', '东星白班鱼', 'category/haishen.jpg', '0', null, '2016-01-22 23:02:04', null, '0');
+INSERT INTO `goods` VALUES ('72', '1', '10', '0', null, '3', '2', '12', '0', '斤', '大头虾', 'category/xia.jpg', '0', null, '2016-02-01 21:43:26', null, '0');
+INSERT INTO `goods` VALUES ('73', '1', '10', '0', null, '3', '3', '25', '0', '斤', '大头虾', 'category/xia.jpg', '0', null, '2016-02-01 21:43:26', null, '0');
+
+-- ----------------------------
+-- Table structure for `orders`
+-- ----------------------------
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders` (
+  `ordersId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `userId` bigint(20) NOT NULL,
+  `shopId` bigint(20) NOT NULL,
+  `seaRecordId` bigint(20) DEFAULT NULL,
+  `totalprice` double DEFAULT NULL,
+  `state` int(11) DEFAULT NULL,
+  `buyerName` varchar(255) DEFAULT NULL,
+  `shopKeeperName` varchar(255) DEFAULT NULL,
+  `sendAddress` varchar(255) DEFAULT NULL,
+  `userName` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `orderNumber` varchar(255) DEFAULT NULL,
+  `provinceId` bigint(20) DEFAULT NULL,
+  `postagePrice` double DEFAULT NULL,
+  `sordersNumber` int(11) DEFAULT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `completeTime` datetime DEFAULT NULL,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `sellerDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  PRIMARY KEY (`ordersId`)
+) ENGINE=InnoDB AUTO_INCREMENT=11122283 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of orders
+-- ----------------------------
+INSERT INTO `orders` VALUES ('11122276', '3', '1', '2', '376.5', '0', '詹命天子', '海格号', '广东海洋大学', '光相片', '18719425973', null, null, '10', '1', '2015-12-17 13:46:49', '2015-12-17 13:46:49', null, '', '', '1');
+INSERT INTO `orders` VALUES ('11122277', '3', '1', '2', '1119.5', '0', '詹命天子', '海格号', '广东海洋大学', '光相片', '18719425973', null, null, '20', '1', '2015-12-17 13:46:49', '2015-12-17 13:56:09', null, '', '', '1');
+INSERT INTO `orders` VALUES ('11122278', '3', '1', '2', '748', '0', '詹命天子', '海格号', '广东海洋大学', '光相片', '18719425973', null, null, '15', '2', '2015-12-17 13:46:49', '2015-12-17 14:20:31', null, '', '', '1');
+INSERT INTO `orders` VALUES ('11122279', '3', '1', '2', '2977', '0', '詹命天子', '海格号', '广东海洋大学', '光相片', '18719425973', null, null, '45', '1', '2015-12-17 13:46:49', '2015-12-17 14:22:38', null, '', '', '1');
+INSERT INTO `orders` VALUES ('11122280', '1', '2', '15', '165', '0', '18719425973', '渔户商店1', '广东海洋大学', '黄色素', '18719425973', null, null, '90', '5', '2016-01-21 21:16:37', '2016-01-21 21:16:58', null, '', '', '1');
+INSERT INTO `orders` VALUES ('11122281', '13', '6', null, '65', '0', 'MissCro', '养殖户商店2', 'gdsldsldjflsd', 'Imissyou', '13763012723', null, null, '25', '1', '2016-02-16 11:24:04', '2016-02-16 11:24:14', null, '', '', '1');
+INSERT INTO `orders` VALUES ('11122282', '13', '6', null, '65', '0', 'MissCro', '养殖户商店2', 'gdsldsldjflsd', 'Imissyou', '13763012723', null, null, '25', '1', '2016-02-16 11:24:46', '2016-02-16 11:24:51', null, '', '', '1');
+
+-- ----------------------------
+-- Table structure for `ordersdetail`
+-- ----------------------------
+DROP TABLE IF EXISTS `ordersdetail`;
+CREATE TABLE `ordersdetail` (
+  `ordersDetailId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `orderId` bigint(20) NOT NULL,
+  `shopId` bigint(20) NOT NULL,
+  `goodsId` bigint(20) NOT NULL,
+  `categoryId` bigint(20) NOT NULL,
+  `goodsName` varchar(255) NOT NULL,
+  `goodsPhoto` varchar(255) DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `totalprice` double DEFAULT NULL,
+  `sku` varchar(255) DEFAULT NULL,
+  `skuId` bigint(20) NOT NULL,
+  `unit` varchar(255) NOT NULL,
+  `number` bigint(20) DEFAULT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  PRIMARY KEY (`ordersDetailId`)
+) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ordersdetail
+-- ----------------------------
+INSERT INTO `ordersdetail` VALUES ('141', '11122275', '1', '1', '7', '白星鱼', 'goods/aaa.jpg', '366.5', '1832.5', '中等大小(3-5)', '1', '斤', '5', '2015-12-13 11:26:45', null, '', '0');
+INSERT INTO `ordersdetail` VALUES ('142', '11122275', '1', '1', '7', '白星鱼', 'goods/aaa.jpg', '366.5', '366.5', '中等大小(3-5)', '1', '斤', '1', '2015-12-13 11:26:45', null, '', '0');
+INSERT INTO `ordersdetail` VALUES ('143', '11122276', '1', '1', '7', '白星鱼', 'goods/aaa.jpg', '366.5', '366.5', '中等大小(3-5)', '1', '斤', '1', '2015-12-17 13:46:40', null, '', '0');
+INSERT INTO `ordersdetail` VALUES ('144', '11122277', '1', '1', '7', '白星鱼', 'goods/aaa.jpg', '366.5', '1099.5', '中等大小(3-5)', '1', '斤', '3', '2015-12-17 13:56:00', null, '', '0');
+INSERT INTO `ordersdetail` VALUES ('145', '11122278', '1', '1', '7', '白星鱼', 'goods/aaa.jpg', '366.5', '366.5', '中等大小(3-5)', '1', '斤', '1', '2015-12-17 14:20:19', null, '', '0');
+INSERT INTO `ordersdetail` VALUES ('146', '11122278', '1', '1', '7', '白星鱼', 'goods/aaa.jpg', '366.5', '366.5', '中等大小(3-5)', '1', '斤', '1', '2015-12-17 14:20:19', null, '', '0');
+INSERT INTO `ordersdetail` VALUES ('147', '11122279', '1', '1', '7', '白星鱼', 'goods/aaa.jpg', '366.5', '2932', '中等大小(3-5)', '1', '斤', '8', '2015-12-17 14:22:32', null, '', '0');
+INSERT INTO `ordersdetail` VALUES ('148', '11122280', '2', '45', '7', '东星白班鱼', 'category/haishen.jpg', '1', '1', '中等大小(3-5)', '1', '斤', '1', '2016-01-21 21:16:37', null, '', '0');
+INSERT INTO `ordersdetail` VALUES ('149', '11122280', '2', '46', '7', '东星白班鱼', 'category/haishen.jpg', '2', '2', '小号(2-8)', '3', '斤', '1', '2016-01-21 21:16:37', null, '', '0');
+INSERT INTO `ordersdetail` VALUES ('150', '11122280', '2', '60', '8', '小黄鱼', 'category/fish.jpg', '22', '22', '中等大小(3-5)', '1', '个', '1', '2016-01-21 21:16:37', null, '', '0');
+INSERT INTO `ordersdetail` VALUES ('151', '11122280', '2', '61', '8', '小黄鱼', 'category/fish.jpg', '25', '25', '大号(4-8)', '2', '个', '1', '2016-01-21 21:16:37', null, '', '0');
+INSERT INTO `ordersdetail` VALUES ('152', '11122280', '2', '62', '8', '小黄鱼', 'category/fish.jpg', '25', '25', '小号(2-8)', '3', '个', '1', '2016-01-21 21:16:37', null, '', '0');
+INSERT INTO `ordersdetail` VALUES ('153', '11122281', '6', '5', '8', '美人鱼3', 'goods/aaa.jpg', '40', '40', '中等大小(3-5)', '1', '只', '1', '2016-02-16 11:24:04', null, '', '0');
+INSERT INTO `ordersdetail` VALUES ('154', '11122282', '6', '5', '8', '美人鱼3', 'goods/aaa.jpg', '40', '40', '中等大小(3-5)', '1', '只', '1', '2016-02-16 11:24:46', null, '', '0');
+
+-- ----------------------------
+-- Table structure for `postage`
+-- ----------------------------
+DROP TABLE IF EXISTS `postage`;
+CREATE TABLE `postage` (
+  `postageId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `firstWeigh` double NOT NULL,
+  `increasePrice` double NOT NULL,
+  `origin` varchar(255) NOT NULL,
+  `destination` varchar(255) NOT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  PRIMARY KEY (`postageId`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of postage
+-- ----------------------------
+INSERT INTO `postage` VALUES ('1', '10', '5', '1', '1', '2015-11-24 11:05:18', null, '', '1');
+INSERT INTO `postage` VALUES ('2', '10', '6', '2', '3', '2015-12-17 22:12:51', null, '', '1');
+INSERT INTO `postage` VALUES ('6', '123', '12', '1', '4', '2016-01-23 23:55:13', null, '', '3');
+INSERT INTO `postage` VALUES ('7', '44', '12', '2', '3', '2016-02-02 23:41:35', null, '', '1');
+INSERT INTO `postage` VALUES ('9', '12', '12', '1', '1', '2016-02-02 23:41:22', null, '', '0');
+
+-- ----------------------------
+-- Table structure for `region`
+-- ----------------------------
+DROP TABLE IF EXISTS `region`;
+CREATE TABLE `region` (
+  `regionId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `parentId` varchar(255) DEFAULT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  PRIMARY KEY (`regionId`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of region
+-- ----------------------------
+INSERT INTO `region` VALUES ('1', '广东省', null, '2015-12-11 21:23:04', null, '', '1');
+INSERT INTO `region` VALUES ('2', '湖南省', null, '2015-12-11 21:25:37', null, '', '1');
+INSERT INTO `region` VALUES ('3', '湖北省', null, '2015-12-11 21:25:58', null, '', '1');
+INSERT INTO `region` VALUES ('4', '辽宁省', null, '2015-12-17 21:19:07', null, '', '1');
+INSERT INTO `region` VALUES ('5', '云南省', null, '2016-01-06 20:05:24', null, '', '1');
+INSERT INTO `region` VALUES ('6', '广西省', null, '2016-01-06 20:05:31', null, '', '1');
+INSERT INTO `region` VALUES ('7', '上海市', null, '2016-01-06 20:05:43', null, '', '1');
+INSERT INTO `region` VALUES ('8', '北京市', null, '2016-01-06 20:05:48', null, '', '1');
+INSERT INTO `region` VALUES ('9', '四川省', null, '2016-01-06 20:05:52', null, '', '1');
+INSERT INTO `region` VALUES ('10', '新疆省', null, '2016-01-06 20:05:57', null, '', '1');
+INSERT INTO `region` VALUES ('11', '山东省', null, '2016-01-06 20:06:03', null, '', '1');
+INSERT INTO `region` VALUES ('12', '山西省', null, '2016-01-06 20:06:25', null, '', '1');
+
+-- ----------------------------
+-- Table structure for `searecord`
+-- ----------------------------
+DROP TABLE IF EXISTS `searecord`;
+CREATE TABLE `searecord` (
+  `seaRecordId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `shopId` bigint(20) NOT NULL,
+  `startSeeTime` datetime DEFAULT NULL,
+  `endSeeTime` datetime DEFAULT NULL,
+  `spendDay` int(11) DEFAULT NULL,
+  `state` int(11) DEFAULT NULL,
+  `shipportName` varchar(255) DEFAULT NULL,
+  `longitude` double DEFAULT NULL,
+  `latitude` double DEFAULT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  `addresscode` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`seaRecordId`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of searecord
+-- ----------------------------
+INSERT INTO `searecord` VALUES ('1', '2', '2015-11-24 08:34:55', '2015-12-10 17:13:30', '3', '1', '湛江港口', '34.6', '2349.5', '2015-11-24 08:34:55', null, '', '6', '1');
+INSERT INTO `searecord` VALUES ('2', '2', '2015-11-24 08:34:55', '2015-12-08 17:13:30', null, '0', '湛江港口', '334', '234', '2015-12-04 21:13:08', null, '', '1', '1');
+INSERT INTO `searecord` VALUES ('5', '1', '2015-12-04 17:13:30', '2015-12-05 17:13:30', null, '0', '湛江港口', '344.3', '238.4', '2015-12-04 17:55:56', null, '', '0', '1');
+INSERT INTO `searecord` VALUES ('6', '1', '2016-01-17 00:00:00', '2016-01-20 00:00:00', null, '0', '海口港口', '234.5', '3948.3', '2016-01-17 13:59:34', null, '', '0', null);
+INSERT INTO `searecord` VALUES ('7', '1', '2016-01-17 00:00:00', '2016-01-20 00:00:00', null, '0', '海口港口', '234.5', '3948.3', '2016-01-17 14:00:08', null, '', '0', null);
+INSERT INTO `searecord` VALUES ('8', '1', '2016-01-17 00:00:00', '2016-01-20 00:00:00', null, '0', '海口港口', '234.5', '3948.3', '2016-01-17 14:00:10', null, '', '0', null);
+INSERT INTO `searecord` VALUES ('14', '1', '2016-01-17 00:00:00', '2016-01-25 00:00:00', null, '1', '湛江港口', '344.3', '238.4', '2016-01-17 14:58:41', null, '', '1', null);
+INSERT INTO `searecord` VALUES ('15', '2', '2016-01-18 00:00:00', '2016-01-22 00:00:00', null, '0', '湛江港口', '344.3', '238.4', '2016-01-18 23:50:01', null, '', '0', null);
+
+-- ----------------------------
+-- Table structure for `shipport`
+-- ----------------------------
+DROP TABLE IF EXISTS `shipport`;
+CREATE TABLE `shipport` (
+  `shipportId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `shipportName` varchar(255) DEFAULT NULL,
+  `addresscode` varchar(255) DEFAULT NULL,
+  `longitude` double DEFAULT NULL,
+  `latitude` double DEFAULT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  PRIMARY KEY (`shipportId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of shipport
+-- ----------------------------
+INSERT INTO `shipport` VALUES ('1', '湛江港口', '1', '344.3', '238.4', '2015-12-04 15:33:33', null, '', '1');
+INSERT INTO `shipport` VALUES ('2', '海口港口', '1', '234.5', '3948.3', '2015-12-04 15:33:51', null, '', '3');
+INSERT INTO `shipport` VALUES ('3', '东海岛港口', '1', '111', '111', '2016-02-02 23:47:47', null, '', '1');
+
+-- ----------------------------
+-- Table structure for `shop`
+-- ----------------------------
+DROP TABLE IF EXISTS `shop`;
+CREATE TABLE `shop` (
+  `shopId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `userId` bigint(20) DEFAULT NULL,
+  `shopName` varchar(255) DEFAULT NULL,
+  `addresscode` varchar(255) DEFAULT NULL,
+  `shopPhoto` varchar(255) DEFAULT NULL,
+  `getType` varchar(255) DEFAULT NULL,
+  `grade` int(15) DEFAULT NULL,
+  `weightQuality` float DEFAULT NULL,
+  `freshQuality` float DEFAULT NULL,
+  `speedQuality` float DEFAULT NULL,
+  `shopType` int(11) DEFAULT NULL,
+  `sendPrice` double DEFAULT NULL,
+  `onSell` bit(1) DEFAULT b'0',
+  `address` varchar(255) DEFAULT NULL,
+  `seaRecordId` bigint(20) DEFAULT NULL,
+  `longitude` double DEFAULT NULL,
+  `latitude` double DEFAULT NULL,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `version` bigint(20) DEFAULT '1',
+  `shipPort` varchar(255) DEFAULT NULL,
+  `portTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`shopId`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of shop
+-- ----------------------------
+INSERT INTO `shop` VALUES ('1', '1', '海格号', '1', 'shop/aaa.jpg', '[16]', '3', '3.81636', '3.64697', '4.00305', '0', '40.5', '', '', null, '234.4', '344.6', null, '', '2015-11-17 11:18:57', '18', null, null);
+INSERT INTO `shop` VALUES ('2', '3', '渔户商店1', '1', 'shop/aaa.jpg', '[17]', '5', '4.5', '4', '5', '0', '56', '', '', '15', '234.4', '344.6', null, '', '2015-11-17 11:18:57', '3', null, null);
+INSERT INTO `shop` VALUES ('3', '7', '渔户商店3', '1', 'shop/aaa.jpg', '[18]', '5', '1', '4.5', '4.5', '0', '40.5', '', '', null, '234.4', '344.6', null, '', '2015-11-17 11:18:57', '2', null, null);
+INSERT INTO `shop` VALUES ('4', '13', '渔户商店2', '1', 'shop/aaa.jpg', '[19]', '5', '3.5', '1', '4', '0', '40.5', '', '', null, '234.4', '344.6', null, '', '2015-11-17 11:18:57', '2', null, null);
+INSERT INTO `shop` VALUES ('5', '2', '养殖户商店1', '1', 'shop/aaa.jpg', '[8,9,10,12]', '5', '1.9', '3.2', '2', '1', '40.5', '', '广东海洋大学', null, '234.4', '344.6', null, '', '2015-11-17 11:18:57', '4', null, null);
+INSERT INTO `shop` VALUES ('6', '6', '养殖户商店2', '1', 'shop/aaa.jpg', '[11,12,13]', '6', '5', '5', '5', '1', '40.5', '', '广东海洋大学', null, '234.4', '344.6', null, '', '2015-11-17 11:18:57', '3', null, null);
+INSERT INTO `shop` VALUES ('7', '5', '养殖户商店3', '1', 'shop/aaa.jpg', '[14,12,13]', '5', '5', '4.6', '4', '1', '40.5', '', '广东海洋大学', null, '234.4', '344.6', null, '', '2015-11-17 11:18:57', '2', null, null);
+INSERT INTO `shop` VALUES ('8', '4', '养殖户商店4', '1', 'shop/aaa.jpg', '[14,15,8]', '5', '4.5', '4.5', '3', '1', '40.5', '', '广东海洋大学', null, '234.4', '344.6', null, '', '2015-11-17 11:18:57', '2', null, null);
+INSERT INTO `shop` VALUES ('9', '23', '渔户商店23', null, null, '[5]', null, null, null, null, '0', null, '', null, null, null, null, null, '', '2016-01-22 13:30:20', '2', null, null);
+INSERT INTO `shop` VALUES ('10', '36', '渔户商店36', null, null, '[7]', null, null, null, null, '0', null, '', null, null, null, null, null, '', '2016-01-23 23:57:58', '1', null, null);
+INSERT INTO `shop` VALUES ('11', '21', '渔户商店21', null, null, '[5]', null, null, null, null, '0', null, '', null, null, null, null, null, '', '2016-02-02 22:12:09', '1', null, null);
+
+-- ----------------------------
+-- Table structure for `shopshipport`
+-- ----------------------------
+DROP TABLE IF EXISTS `shopshipport`;
+CREATE TABLE `shopshipport` (
+  `shopshipportId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `shopId` varchar(255) DEFAULT NULL,
+  `shipportId` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`shopshipportId`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of shopshipport
+-- ----------------------------
+INSERT INTO `shopshipport` VALUES ('15', '2', '1');
+INSERT INTO `shopshipport` VALUES ('16', '2', '2');
+INSERT INTO `shopshipport` VALUES ('17', '1', '1');
+INSERT INTO `shopshipport` VALUES ('18', '1', '2');
+INSERT INTO `shopshipport` VALUES ('19', '2', '3');
+
+-- ----------------------------
+-- Table structure for `sku`
+-- ----------------------------
+DROP TABLE IF EXISTS `sku`;
+CREATE TABLE `sku` (
+  `skuId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `unitId` bigint(20) DEFAULT NULL,
+  `skuName` varchar(255) NOT NULL,
+  `lowscale` double NOT NULL,
+  `highscale` double NOT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  PRIMARY KEY (`skuId`)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sku
+-- ----------------------------
+INSERT INTO `sku` VALUES ('1', '1', '中等大小(3-5)', '3', '5', '2015-11-04 22:58:42', null, '', '2');
+INSERT INTO `sku` VALUES ('2', '1', '大号(4-8)', '4', '8', '2015-11-04 22:59:08', null, '', '1');
+INSERT INTO `sku` VALUES ('3', '1', '小号(2-8)', '2', '8', '2015-11-04 22:59:32', null, '', '2');
+INSERT INTO `sku` VALUES ('4', null, '小号(2-8)', '1', '2', '2015-12-17 16:22:56', null, '', '0');
+INSERT INTO `sku` VALUES ('5', null, '小号(2-8)', '3', '4', '2015-12-17 16:22:56', null, '', '0');
+INSERT INTO `sku` VALUES ('6', null, '小号(2-8)', '5', '6', '2015-12-17 16:22:56', null, '', '0');
+INSERT INTO `sku` VALUES ('7', null, '较小规格', '1', '2', '2015-12-17 16:48:45', null, '', '0');
+INSERT INTO `sku` VALUES ('8', null, '中等规格', '3', '4', '2015-12-17 16:48:45', null, '', '0');
+INSERT INTO `sku` VALUES ('9', null, '较大规格', '5', '6', '2015-12-17 16:48:45', null, '', '0');
+INSERT INTO `sku` VALUES ('10', null, '较小规格', '0', '1', '2015-12-17 23:06:40', null, '', '0');
+INSERT INTO `sku` VALUES ('11', null, '中等规格', '0', '0', '2015-12-17 23:06:40', null, '', '0');
+INSERT INTO `sku` VALUES ('12', null, '较大规格', '0', '0', '2015-12-17 23:06:40', null, '', '0');
+INSERT INTO `sku` VALUES ('13', null, '最小规格', '1', '2', '2015-12-17 23:10:29', null, '', '0');
+INSERT INTO `sku` VALUES ('14', null, '较小规格', '3', '4', '2015-12-17 23:10:29', null, '', '0');
+INSERT INTO `sku` VALUES ('15', null, '中等规格', '5', '6', '2015-12-17 23:10:29', null, '', '0');
+INSERT INTO `sku` VALUES ('16', null, '较大规格', '7', '8', '2015-12-17 23:10:29', null, '', '0');
+INSERT INTO `sku` VALUES ('17', null, '最大规格', '9', '10', '2015-12-17 23:10:29', null, '', '0');
+INSERT INTO `sku` VALUES ('18', null, '较小规格', '0', '0', '2015-12-21 16:32:45', null, '', '0');
+INSERT INTO `sku` VALUES ('19', null, '中等规格', '0', '0', '2015-12-21 16:32:45', null, '', '0');
+INSERT INTO `sku` VALUES ('20', null, '较大规格', '0', '0', '2015-12-21 16:32:45', null, '', '0');
+INSERT INTO `sku` VALUES ('21', null, '较小规格', '0', '1', '2015-12-21 19:29:25', null, '', '0');
+INSERT INTO `sku` VALUES ('22', null, '中等规格', '2', '3', '2015-12-21 19:29:25', null, '', '0');
+INSERT INTO `sku` VALUES ('23', null, '较大规格', '4', '5', '2015-12-21 19:29:25', null, '', '0');
+INSERT INTO `sku` VALUES ('24', null, '较小规格', '0', '0', '2015-12-21 22:29:22', null, '', '0');
+INSERT INTO `sku` VALUES ('25', null, '中等规格', '0', '0', '2015-12-21 22:29:22', null, '', '0');
+INSERT INTO `sku` VALUES ('26', null, '较大规格', '0', '0', '2015-12-21 22:29:22', null, '', '0');
+INSERT INTO `sku` VALUES ('27', null, '较小规格', '1', '2', '2015-12-22 20:56:17', null, '', '1');
+INSERT INTO `sku` VALUES ('28', null, '中等规格', '3', '4', '2015-12-22 20:56:17', null, '', '1');
+INSERT INTO `sku` VALUES ('29', null, '较大规格', '5', '6', '2015-12-22 20:56:17', null, '', '1');
+
+-- ----------------------------
+-- Table structure for `sorders`
+-- ----------------------------
+DROP TABLE IF EXISTS `sorders`;
+CREATE TABLE `sorders` (
+  `sordersId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `orderId` bigint(20) DEFAULT NULL,
+  `shopId` bigint(20) DEFAULT NULL,
+  `goodsId` bigint(20) DEFAULT NULL,
+  `goodsName` varchar(255) DEFAULT NULL,
+  `goodsType` varchar(255) DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `totalprice` double DEFAULT NULL,
+  `sku` varchar(255) DEFAULT NULL,
+  `unit` varchar(255) DEFAULT NULL,
+  `sellNumber` bigint(20) DEFAULT NULL,
+  `number` bigint(20) DEFAULT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  `categoryId` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`sordersId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sorders
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `unit`
+-- ----------------------------
+DROP TABLE IF EXISTS `unit`;
+CREATE TABLE `unit` (
+  `unitId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `unitName` varchar(255) NOT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  PRIMARY KEY (`unitId`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of unit
+-- ----------------------------
+INSERT INTO `unit` VALUES ('1', '条', '2015-11-04 13:41:33', null, '', '1');
+INSERT INTO `unit` VALUES ('2', '斤', '2015-11-04 13:41:33', null, '', '1');
+INSERT INTO `unit` VALUES ('3', '只', '2015-11-04 13:41:33', null, '', '1');
+INSERT INTO `unit` VALUES ('4', '包', '2015-11-04 13:41:33', null, '', '1');
+
+-- ----------------------------
+-- Table structure for `user`
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `userId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `userType` int(11) DEFAULT NULL,
+  `identityId` bigint(20) DEFAULT NULL,
+  `state` int(11) DEFAULT NULL,
+  `userName` varchar(255) DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `phoneNumber` varchar(255) DEFAULT NULL,
+  `headImage` varchar(255) DEFAULT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  `getAddressId` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`userId`),
+  UNIQUE KEY `phoneNumber` (`phoneNumber`)
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('1', '1', '1', '1', '18719425973', 'e10adc3949ba59abbe56e057f20f883e', '18719425973', 'user/94b7420a-b75d-4e46-bdc9-b124ff5110e4.PNG', '2015-11-05 11:12:04', null, '', '3', '29');
+INSERT INTO `user` VALUES ('2', '2', '1', '1', 'sdf', 'e10adc3949ba59abbe56e057f20f883e', '123123', 'user/bbb.jpg', '2015-12-05 21:21:08', null, '', '2', null);
+INSERT INTO `user` VALUES ('3', '1', '2', '1', 'zhanjixun', 'e10adc3949ba59abbe56e057f20f883e', '18312687419', 'user/667d09a2-4d73-4ffc-9f4f-6649b1e8cb9f.PNG', '2015-12-22 20:12:37', null, '', '39', '45');
+INSERT INTO `user` VALUES ('4', '2', '4', '1', '詹命天子', 'e10adc3949ba59abbe56e057f20f883e', '18312687416', 'user/aaa.jpg', '2015-11-24 12:45:15', null, '', '17', '28');
+INSERT INTO `user` VALUES ('5', '2', '3', '1', '詹命天子', 'e10adc3949ba59abbe56e057f20f883e', '18312687413', 'user/aaa.jpg', '2015-11-24 12:45:15', null, '', '1', '16');
+INSERT INTO `user` VALUES ('6', '2', '2', '1', '詹命天子', 'e10adc3949ba59abbe56e057f20f883e', '18312687414', 'user/aaa.jpg', '2015-11-24 12:45:15', null, '', '1', '16');
+INSERT INTO `user` VALUES ('7', '1', '3', '1', '詹命天子', 'e10adc3949ba59abbe56e057f20f883e', '18312687415', 'user/aaa.jpg', '2015-11-24 12:45:15', null, '', '1', '16');
+INSERT INTO `user` VALUES ('13', '1', '4', '1', 'MissCro', 'e10adc3949ba59abbe56e057f20f883e', '13763012723', 'user/8881f718-7c4e-41b4-aaa5-03968745b924.jpg', '2015-12-03 21:20:23', null, '', '16', '44');
+INSERT INTO `user` VALUES ('15', '0', null, null, '13822542036', '974e7e427555bbda8d4393aaeb1c340e', '13822542036', 'user/aaa.jpg', '2015-12-15 21:05:23', null, '', '0', '38');
+INSERT INTO `user` VALUES ('17', '0', null, null, '18320489493', 'e10adc3949ba59abbe56e057f20f883e', '18320489493', 'user/ddd.jpg', '2015-12-05 21:14:41', null, '', '0', '37');
+INSERT INTO `user` VALUES ('21', '1', '6', '1', '18320489492', 'e10adc3949ba59abbe56e057f20f883e', '18320489495', 'user/bbb.jpg', '2016-01-06 21:12:40', null, '', '0', null);
+INSERT INTO `user` VALUES ('22', '1', '7', '2', '18320489493', 'e10adc3949ba59abbe56e057f20f883e', '18320489496', 'user/bbb.jpg', '2016-01-06 21:13:07', null, '', '0', null);
+INSERT INTO `user` VALUES ('23', '1', '8', '1', '18320489494', 'e10adc3949ba59abbe56e057f20f883e', '18320489497', 'user/bbb.jpg', '2016-01-06 21:13:20', null, '', '0', null);
+INSERT INTO `user` VALUES ('24', '1', '9', '2', '18320489492', 'e10adc3949ba59abbe56e057f20f883e', '18320489498', 'user/bbb.jpg', '2016-01-06 21:13:35', null, '', '0', null);
+INSERT INTO `user` VALUES ('27', '2', '6', '2', '18320489492', 'e10adc3949ba59abbe56e057f20f883e', '18320489422', 'user/bbb.jpg', '2016-01-06 21:14:08', null, '', '0', null);
+INSERT INTO `user` VALUES ('28', '2', '7', '2', '18320489492', 'e10adc3949ba59abbe56e057f20f883e', '18320489432', 'user/bbb.jpg', '2016-01-06 21:14:17', null, '', '0', null);
+INSERT INTO `user` VALUES ('29', '2', '8', '2', '18320489492', 'e10adc3949ba59abbe56e057f20f883e', '18320489442', 'user/bbb.jpg', '2016-01-06 21:14:26', null, '', '0', null);
+INSERT INTO `user` VALUES ('30', '2', '9', '2', '18320489492', 'e10adc3949ba59abbe56e057f20f883e', '18320489452', 'user/bbb.jpg', '2016-01-06 21:14:36', null, '', '0', null);
+INSERT INTO `user` VALUES ('36', '1', '10', '1', '18312687412', 'e10adc3949ba59abbe56e057f20f883e', '18312687412', 'user/a0a59e4f-f91a-438b-883c-5045972aff35.jpg', '2016-01-20 16:05:26', null, '', '1', null);
+INSERT INTO `user` VALUES ('37', '0', null, null, '18312687412', 'e10adc3949ba59abbe56e057f20f883e', '13662450010', 'user/a0a59e4f-f91a-438b-883c-5045972aff35.jpg', '2016-01-20 16:05:26', null, '', '1', null);
+
+-- ----------------------------
+-- Table structure for `verifycode`
+-- ----------------------------
+DROP TABLE IF EXISTS `verifycode`;
+CREATE TABLE `verifycode` (
+  `verifycodeId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `verifyCode` varchar(255) DEFAULT NULL,
+  `phoneNumber` varchar(255) DEFAULT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creatorId` bigint(20) DEFAULT NULL,
+  `isDelete` bit(1) DEFAULT b'0',
+  `version` bigint(20) DEFAULT '1',
+  PRIMARY KEY (`verifycodeId`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of verifycode
+-- ----------------------------
+INSERT INTO `verifycode` VALUES ('4', '242109', '15811707583', '2015-11-26 12:08:17', null, '', '1');
+INSERT INTO `verifycode` VALUES ('5', '744441', '13763012723', '2015-11-26 12:26:04', null, '', '4');
+INSERT INTO `verifycode` VALUES ('6', '599066', '18312687412', '2015-11-26 12:32:21', null, '', '10');
+INSERT INTO `verifycode` VALUES ('7', '652235', '18320489492', '2015-12-05 21:11:07', null, '', '0');
