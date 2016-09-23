@@ -1,4 +1,4 @@
-@�)W<?php exit; ?>a:1:{s:7:"content";O:8:"stdClass":24:{s:2:"ID";i:241;s:11:"post_author";s:1:"6";s:9:"post_date";s:19:"2016-04-29 10:24:52";s:13:"post_date_gmt";s:19:"2016-04-29 02:24:52";s:12:"post_content";s:24986:"<strong><b> </b></strong>
+�WW<?php exit; ?>a:1:{s:7:"content";O:8:"stdClass":23:{s:2:"ID";s:3:"241";s:11:"post_author";s:1:"6";s:9:"post_date";s:19:"2016-04-29 10:24:52";s:13:"post_date_gmt";s:19:"2016-04-29 02:24:52";s:12:"post_content";s:24986:"<strong><b> </b></strong>
 
 第一章  总则
 
@@ -520,4 +520,4 @@
 
 14．因卫生问题受到三次及以上警告者。
 
-&nbsp;";s:10:"post_title";s:75:"广东海洋大学大学生创新创业孵化基地管理办法（试行）";s:12:"post_excerpt";s:0:"";s:11:"post_status";s:7:"publish";s:14:"comment_status";s:4:"open";s:11:"ping_status";s:4:"open";s:13:"post_password";s:0:"";s:9:"post_name";s:198:"%e5%b9%bf%e4%b8%9c%e6%b5%b7%e6%b4%8b%e5%a4%a7%e5%ad%a6%e5%a4%a7%e5%ad%a6%e7%94%9f%e5%88%9b%e6%96%b0%e5%88%9b%e4%b8%9a%e5%ad%b5%e5%8c%96%e5%9f%ba%e5%9c%b0%e7%ae%a1%e7%90%86%e5%8a%9e%e6%b3%95%ef%bc%88";s:7:"to_ping";s:0:"";s:6:"pinged";s:0:"";s:13:"post_modified";s:19:"2016-04-29 12:13:20";s:17:"post_modified_gmt";s:19:"2016-04-29 04:13:20";s:21:"post_content_filtered";s:0:"";s:11:"post_parent";i:0;s:4:"guid";s:62:"http://zsjy.gdou.edu.cn/gdoujiuye/?post_type=policy&#038;p=241";s:10:"menu_order";i:0;s:9:"post_type";s:6:"policy";s:14:"post_mime_type";s:0:"";s:13:"comment_count";s:1:"0";s:6:"filter";s:3:"raw";}}
+&nbsp;";s:10:"post_title";s:75:"广东海洋大学大学生创新创业孵化基地管理办法（试行）";s:12:"post_excerpt";s:0:"";s:11:"post_status";s:7:"publish";s:14:"comment_status";s:4:"open";s:11:"ping_status";s:4:"open";s:13:"post_password";s:0:"";s:9:"post_name";s:198:"%e5%b9%bf%e4%b8%9c%e6%b5%b7%e6%b4%8b%e5%a4%a7%e5%ad%a6%e5%a4%a7%e5%ad%a6%e7%94%9f%e5%88%9b%e6%96%b0%e5%88%9b%e4%b8%9a%e5%ad%b5%e5%8c%96%e5%9f%ba%e5%9c%b0%e7%ae%a1%e7%90%86%e5%8a%9e%e6%b3%95%ef%bc%88";s:7:"to_ping";s:0:"";s:6:"pinged";s:0:"";s:13:"post_modified";s:19:"2016-04-29 12:13:20";s:17:"post_modified_gmt";s:19:"2016-04-29 04:13:20";s:21:"post_content_filtered";s:0:"";s:11:"post_parent";s:1:"0";s:4:"guid";s:62:"http://zsjy.gdou.edu.cn/gdoujiuye/?post_type=policy&#038;p=241";s:10:"menu_order";s:1:"0";s:9:"post_type";s:6:"policy";s:14:"post_mime_type";s:0:"";s:13:"comment_count";s:1:"0";}}

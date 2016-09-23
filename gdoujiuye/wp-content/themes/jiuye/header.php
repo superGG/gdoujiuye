@@ -1,10 +1,12 @@
-<!DOCTYPE html />
+<!DOCTYPE html/>
 <html lang="zh-CN" style="overflow: visible;">
 <head>
-<?php wp_head(); ?>
 	<title>广海孵化 - 支持创新的力量</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=9">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" href="<?php bloginfo( 'template_url' ); ?>/css/index.css">
 	<link rel="stylesheet" href="<?php bloginfo( 'template_url' ); ?>/style.css">
+	<?php wp_head(); ?>
 
 <script src="<?php bloginfo( 'template_url' ); ?>/js/jquery-1.12.3.min.js"></script>
 <script>
@@ -16,6 +18,9 @@
 </script>
 </head>
 <body class="home home-" style="overflow: visible;">
+<!--[if lte IE 7]>
+<p class="notice-failure">你似乎在使用一款 <strong>过时的</strong> 浏览器. 请 <a href="http://browsehappy.com/">更新它</a> 或是使用 <a href="http://www.google.com/chromeframe/?redirect=true">Chrome Frame</a> 来增强你的体验。</p>
+<![endif]-->
 	<div class="cover">
 		<div class="log">
 			<li class="log-in">登陆</li><li class="false"></li>

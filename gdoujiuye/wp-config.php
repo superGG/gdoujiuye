@@ -1,6 +1,5 @@
-<?php
-/** Enable W3 Total Cache */
-define('WP_CACHE', true); // Added by W3 Total Cache
+﻿<?php
+
 
 /**
  * WordPress基础配置文件。
@@ -32,7 +31,7 @@ define('DB_USER', 'root');
 define('DB_PASSWORD', '1314520jgwnl');
 
 /** MySQL主机 */
-define('DB_HOST', 'localhost');
+define('DB_HOST', '127.0.0.1');
 
 /** 创建数据表时默认的文字编码 */
 define('DB_CHARSET', 'utf8');

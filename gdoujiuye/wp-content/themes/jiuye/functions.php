@@ -1,7 +1,4 @@
 <?php 
-
- 
-	
     //启动特色图像
     if ( function_exists( 'add_theme_support' ) )   add_theme_support( 'post-thumbnails' ); 
     
@@ -111,9 +108,5 @@
 			return $user_contactmethods ;
 		}
 	}
-
-	
-	
-
 
 ?>

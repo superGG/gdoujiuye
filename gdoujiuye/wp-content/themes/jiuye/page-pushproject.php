@@ -95,7 +95,7 @@ get_header();
         </div>
         <div class="c12">
           <img id="popup_preview_image" src="">
-          <img id="popup_preview_load" src="" class="c14"></div>
+          <img id="popup_preview_load" src="http://assets.demohour.com/assets/load-05eb745176d79ec27d52d544582483fc4d0f6378c7ed2060be24dfc4e8990668.gif" class="c14"></div>
         <div class="c13">
           <a href="#preview-prev" id="popup_preview_prev" class="c131 c134"></a>
           <a href="#preview-open" id="popup_preview_open" class="c132"></a>

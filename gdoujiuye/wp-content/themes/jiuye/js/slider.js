@@ -14,7 +14,6 @@
 
 		var startShow = function(){
 
-			
 			defaults.nowIndex++;
 			var $this = $(this);
 			$this.animate({'margin-left':-defaults.nowIndex*100 + '%'},1500,function(){
@@ -44,7 +43,6 @@
 			$(this).bind('click',function(){
 
 					defaults.nowIndex = i;
-					
 					me.stop().animate({'margin-left': -i*100 + '%'},500,function(){
 
 

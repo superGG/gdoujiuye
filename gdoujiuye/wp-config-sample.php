@@ -29,7 +29,7 @@ define('DB_USER', 'username_here');
 define('DB_PASSWORD', 'password_here');
 
 /** MySQL主机 */
-define('DB_HOST', 'localhost');
+define('DB_HOST', '127.0.0.1');
 
 /** 创建数据表时默认的文字编码 */
 define('DB_CHARSET', 'utf8');

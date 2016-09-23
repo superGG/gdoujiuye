@@ -91,16 +91,54 @@
                     $args=array(
 						  'post_type'=>'project',//查找出所有文章（多个结果集，复数）
 						   //'page_id'=>19//仅仅查询id号为x(x是数字，你自己系统中‘现有’的某个文章的id)的页面，只有一个结果，单数，如果page_id不指定，则返回所有page
+							'comment_status' => "open",
+					);
+					$remen=array(
+						  'post_type'=>'project', 
+						  'comment_status' => "closed",
 					);
 					// 实例化wp_query
 					$the_query = new WP_Query( $args );
-					 
+					$remen_query = new WP_Query($remen);
+					$sum = 0;
+
+					// 开始循环
+					if ( $remen_query->have_posts() ) {//如果找到了结果，便输出以下内容 
+						// $i = 0;
+						while ( $remen_query->have_posts() && $sum<8) {//再次判断是否有结果
+							$remen_query->the_post();//不用问为什么，每次都要写这个；
+							$sum++;
+							// print($the_query[0]->comment_status);
+							echo '<dl class="project-poster project-running">
+									<dd class="c3">';
+							echo '<a href="'.get_permalink().'" title="阅读全文">';
+							dm_the_thumbnail();
+							echo '</a>';  
+							echo		'</dd>
+									<dt>
+										<a href="';
+										the_permalink();
+							echo			'" target="_blank" class="project-poster-name">';
+										the_title();
+							echo		'</a>
+									</dt>
+									<dd class="c6">
+										<span> ';
+										the_excerpt();
+							echo		'</span>
+									</dd>
+								</dl>
+							';//这里开始输出你想要的模板标签
+						}
+					} else {
+						// 如果没有找到任何结果，就输出这个
+					} 
 					// 开始循环
 					if ( $the_query->have_posts() ) {//如果找到了结果，便输出以下内容 
-						$i=0;
-						while ( $the_query->have_posts() && $i < 8) {//再次判断是否有结果
+						
+						while ( $the_query->have_posts() && $sum < 8) {//再次判断是否有结果
 							$the_query->the_post();//不用问为什么，每次都要写这个；
-							$i ++;
+							$sum ++;
 							echo '<dl class="project-poster project-running">
 									<dd class="c3">';
 							echo '<a href="'.get_permalink().'" title="阅读全文">';
@@ -163,7 +201,14 @@
 				</div>
 			</div>
 			<div class="partner">
-			
+				<!--<span>合作伙伴</span>
+			<a >
+				<img src="http://assets.demohour.com/assets/demo/60-709e3f625ebaf3f9f3f0bb5f650fca67464851198ccf85c1db700723fd7d5ac2.jpg"/>
+			</a>
+			<a href="">
+				<img src="http://assets.demohour.com/assets/demo/60-709e3f625ebaf3f9f3f0bb5f650fca67464851198ccf85c1db700723fd7d5ac2.jpg"/>
+			</a>
+			-->
 		</div>
 	</div>
 
